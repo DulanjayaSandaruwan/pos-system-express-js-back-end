@@ -281,7 +281,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"id\":\"C00-002\",\r\n    \"name\":\"Pathmasiri\",\r\n    \"address\":\"Galle\",\r\n    \"salary\":150000.00\r\n}",
+              "raw": "{\r\n    \"id\":\"C00-002\",\r\n    \"name\":\"Pathmasiri\",\r\n    \"address\":\"Ayagama\",\r\n    \"salary\":150000.00\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -309,7 +309,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"id\":\"C00-001\",\r\n    \"name\":\"Sundara\",\r\n    \"address\":\"Matara\",\r\n    \"salary\":50000.00\r\n}",
+              "raw": "{\r\n    \"id\":\"C00-001\",\r\n    \"name\":\"Sundara\",\r\n    \"address\":\"Kalawana\",\r\n    \"salary\":50000.00\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
