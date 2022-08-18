@@ -4,16 +4,16 @@ const db = require('../configs/db.config')
 
 const connection = mysql.createConnection(db.database)
 
-connection.connect(function(err){
-    if(err){
+connection.connect(function (err) {
+    if (err) {
         console.log(err);
-    }else{
+    } else {
         console.log('Connected to the MYSQL server');
         var userTableQuery = "CREATE TABLE IF NOT EXISTS orderDetail (orderId VARCHAR(255) PRIMARY KEY, itemCode VARCHAR(255), orderQty int(10), price double)"
-        connection.query(userTableQuery, function(err,result){
-            if(err) throw err;
+        connection.query(userTableQuery, function (err, result) {
+            if (err) throw err;
             console.log(result);
-            if(result.warningCount === 0){
+            if (result.warningCount === 0) {
                 console.log('Order Detail table created');
             }
         })
@@ -22,17 +22,17 @@ connection.connect(function(err){
 
 const router = express.Router()
 
-router.get('/',(req, res) =>{
+router.get('/', (req, res) => {
     var query = "SELECT * FROM orderDetail"
 
-    connection.query(query,(err,rows) =>{
-        if(err) throw err
+    connection.query(query, (err, rows) => {
+        if (err) throw err
 
         res.send(rows)
     })
 })
 
-router.post('/',(req, res) =>{
+router.post('/', (req, res) => {
     const orderId = req.body.orderId
     const itemCode = req.body.itemCode
     const orderQty = req.body.orderQty
@@ -40,16 +40,16 @@ router.post('/',(req, res) =>{
 
     var query = "INSERT INTO orderDetail (orderId, itemCode, orderQty, price) VALUES (?,?,?)"
 
-    connection.query(query, [orderId, itemCode, orderQty, price], (err) =>{
-        if(err){
-            res.send({"message" : "duplicate entry"})
-        }else{
-            res.send({"message" : "Order Detail succesfully added!"})
+    connection.query(query, [orderId, itemCode, orderQty, price], (err) => {
+        if (err) {
+            res.send({"message": "duplicate entry"})
+        } else {
+            res.send({"message": "Order Detail succesfully added!"})
         }
     })
 })
 
-router.put('/',(req, res) =>{
+router.put('/', (req, res) => {
     const orderId = req.body.orderId
     const itemCode = req.body.itemCode
     const orderQty = req.body.orderQty
@@ -57,13 +57,13 @@ router.put('/',(req, res) =>{
 
     var query = "UPDATE orderDetail SET itemCode=?, orderQty=?, price=? WHERE orderId=?"
 
-    connection.query(query, [itemCode, orderQty, price, orderId], (err,rows) =>{
-        if(err) console.log(err);
+    connection.query(query, [itemCode, orderQty, price, orderId], (err, rows) => {
+        if (err) console.log(err);
 
-        if(rows.affectedRows > 0){
-            res.send({'message' : 'Order Detail Updated'})
-        }else{
-            res.send({'message' : 'Order Detail not found'})
+        if (rows.affectedRows > 0) {
+            res.send({'message': 'Order Detail Updated'})
+        } else {
+            res.send({'message': 'Order Detail not found'})
         }
     })
 })
@@ -77,9 +77,9 @@ router.delete('/:orderId', (req, res) => {
         if (err) console.log(err);
 
         if (rows.affectedRows > 0) {
-            res.send({ 'message': 'Order Detail deleted' })
+            res.send({'message': 'Order Detail deleted'})
         } else {
-            res.send({ 'message': 'Order Detail not found' })
+            res.send({'message': 'Order Detail not found'})
         }
     })
 })
